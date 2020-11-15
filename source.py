@@ -1,4 +1,7 @@
-
+import sys
+import sqlite3
+from sqlite3 import Error
+import datetime
 
 loop = 1
 
@@ -6,7 +9,42 @@ while loop == 1:
     
     menu = int(input("Que accion deseas realizar\n 1.Registrar una venta\n 2. Consultar una venta\n 3. Salir\n"))
     if menu == 1:
-        pass
+        try:
+            with sqlite3.connect("Registro de Ventas.db") as conn:
+                c = conn.cursor()
+                c.execute("CREATE TABLE IF NOT EXISTS ventas (codigo INTEGER PRIMARY KEY, nombre TEXT NOT NULL, cantidad INTEGER, precio INTEGER, fecha DATE);")
+                print("Conexión establecida correctamente")
+        except Error as e:
+            print(e)
+        except:
+            print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
+            
+        continuar = 1
+        while continuar == 1:
+            print("")
+            print("Proporcione los datos de la venta, introduzca la clave 0(cero) para terminar...")
+            clave_prd= int(input("Clave de la venta a agregar: "))
+            if clave_prd == 0:
+                continuar = 2
+            else:
+                nombre_prd = input("Nombre del producto a agregar: ")
+                cantidad_prd = int(input("Dime a cantidad del producto"))
+                precio_prd = int(input("Dime el precio unitario del producto"))
+                fecha_venta = datetime.date.today()
+                    
+                try:
+                    with sqlite3.connect("Registro de ventas.db") as conn:
+                        c = conn.cursor()
+                        valores = {"clave":clave_prd, "nombre":nombre_prd, "cantidad":cantidad_prd, "precio":precio_prd, "fecha":fecha_venta}
+                        c.execute("INSERT INTO ventas VALUES(:clave, :nombre, :cantidad, :precio, :fecha)", valores)
+                        print("*** Registro agregado exitosamente ***")
+                except Error as e:
+                    print(e)
+                except:
+                    print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
+        print("Se concluyó la carga de registros de fabricante")
+
+
     
     
     elif menu == 2:
@@ -21,4 +59,4 @@ while loop == 1:
     
     else:
         
-        print("Opcion no valida, ingrese una opcion presentada en el menu")
+        print("Opcion no valida ingrese una opcion presentada en el menu")
