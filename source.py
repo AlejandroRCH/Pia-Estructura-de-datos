@@ -9,11 +9,11 @@ while loop == 1:
         pass
     
     
-    if menu == 2:
+    elif menu == 2:
         pass
     
     
-    if menu == 3:
+    elif menu == 3:
         
         print("Vuelve pronto :)")
         loop = 2
