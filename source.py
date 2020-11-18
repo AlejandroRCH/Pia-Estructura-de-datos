@@ -48,7 +48,21 @@ while loop == 1:
     
     
     elif menu == 2:
-        pass
+        try:
+            with sqlite3.connect("Registro de Ventas.db") as conn:
+                c = conn.cursor()
+                consulta = input("¿Cuál es la fecha de venta que quieres consultar? Escribe la fecha con el siguiente formato: yyyy-mm-dd:\n ")
+                valor ={"fecha":consulta}                
+                c.execute("SELECT * FROM ventas WHERE fecha =(:fecha)",valor)
+                registros = c.fetchall()
+                print("Clave\tNombre del producto\tCantidad\tPrecio\tFecha")
+                print("◄" * 50)
+                for clave, nombre, cantidad, precio, fecha in registros:
+                    print(f"{clave}\t")
+                    print(f"{nombre}\t")
+                    print(f"{cantidad}\t")
+                    print(f"{precio}\t")
+                    print(f"{fecha}\t")
     
     
     elif menu == 3:
