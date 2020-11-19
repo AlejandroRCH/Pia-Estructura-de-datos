@@ -21,8 +21,10 @@ while loop == 1:
             
         continuar = 1
         while continuar == 1:
-            print("")
-            print("Proporcione los datos de la venta, introduzca la clave 0(cero) para terminar...")
+            print("=" * 40)
+            print("----------INSTRUCCIONES----------")
+            print("Proporcione los datos de la venta, introduzca la clave 0(cero) para terminar: ")
+            print("\nINGRESA UN NUMERO ENTERO PARA LA CLAVE\n")
             clave_prd= int(input("Clave de la venta a agregar: "))
             if clave_prd == 0:
                 continuar = 2
