@@ -29,9 +29,9 @@ while loop == 1:
             if clave_prd == 0:
                 continuar = 2
             else:
-                nombre_prd = input("Nombre del producto a agregar: ")
-                cantidad_prd = int(input("Dime a cantidad del producto"))
-                precio_prd = int(input("Dime el precio unitario del producto"))
+                nombre_prd = input("¿Cual es el nombre del producto?: ")
+                cantidad_prd = int(input("¿Cuantos productos vas a registrar?: "))
+                precio_prd = int(input("¿Cual es el valor unitario del producto?: "))
                 fecha_venta = datetime.date.today()
                     
                 try:
