@@ -10,7 +10,7 @@ while loop == 1:
     menu = int(input("Que accion deseas realizar\n 1.Registrar una venta\n 2. Consultar una venta\n 3. Salir\n"))
     if menu == 1:
         try:
-            with sqlite3.connect("Registro de Ventas.db") as conn:
+            with sqlite3.connect("Registro_de_Ventas.db") as conn:
                 c = conn.cursor()
                 c.execute("CREATE TABLE IF NOT EXISTS ventas (codigo INTEGER PRIMARY KEY, nombre TEXT NOT NULL, cantidad INTEGER, precio INTEGER, fecha DATE);")
                 print("Conexión establecida correctamente")
@@ -51,7 +51,7 @@ while loop == 1:
                 fecha_venta = datetime.date.today()
                     
                 try:
-                    with sqlite3.connect("Registro de ventas.db") as conn:
+                    with sqlite3.connect("Registro_de_ventas.db") as conn:
                         c = conn.cursor()
                         valores = {"clave":clave_prd, "nombre":nombre_prd, "cantidad":cantidad_prd, "precio":precio_prd, "fecha":fecha_venta}
                         c.execute("INSERT INTO ventas VALUES(:clave, :nombre, :cantidad, :precio, :fecha)", valores)
@@ -67,7 +67,7 @@ while loop == 1:
     
     elif menu == 2:
         try:
-            with sqlite3.connect("Registro de Ventas.db") as conn:
+            with sqlite3.connect("Registro_de_Ventas.db") as conn:
                 c = conn.cursor()
                 consulta = input("¿Cuál es la fecha de venta que quieres consultar? Escribe la fecha con el siguiente formato: yyyy-mm-dd:\n ")
                 valor ={"fecha":consulta}                
