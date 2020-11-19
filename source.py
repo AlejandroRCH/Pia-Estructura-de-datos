@@ -73,14 +73,23 @@ while loop == 1:
                 valor ={"fecha":consulta}                
                 c.execute("SELECT * FROM ventas WHERE fecha =(:fecha)",valor)
                 registros = c.fetchall()
-                print("Clave\tNombre del producto\tCantidad\tPrecio\tFecha")
-                print("◄" * 50)
-                for clave, nombre, cantidad, precio, fecha in registros:
-                    print(f"{clave}\t")
-                    print(f"{nombre}\t")
-                    print(f"{cantidad}\t")
-                    print(f"{precio}\t")
-                    print(f"{fecha}\t")
+                print("*** Registros consultados exitosamente ***")
+                
+                if registros:
+                    print("Clave\tNombre\tCantidad\tPrecio\tFecha")
+                    for clave, nombre, cantidad, precio, fecha in registros:
+                        print(f"{clave} \t", end="")
+                        print(f"{nombre} \t", end="")
+                        print(f"{cantidad} \t", end="")
+                        print(f"{precio} \t", end="")
+                        print(fecha)
+                        
+                else:
+                    print(f"No se encontraron ventas en: {consulta}, intentelo de nuevo con otra fecha")
+        except Error as e:
+            print(e)
+        except:
+            print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
     
     
     elif menu == 3:
