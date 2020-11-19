@@ -31,7 +31,7 @@ while loop == 1:
             else:
                 nombre_prd = input("¿Cual es el nombre del producto?: ")
                 contador_cantidad = 0 
-                
+                contador_unitario = 0 
                 while contador_cantidad == 0: 
                     cantidad_prd = int(input("¿Cuantos productos vas a registrar?: "))
                     if cantidad_prd < 0: 
@@ -40,7 +40,14 @@ while loop == 1:
                         print("Por favor vuelve a ingresar la cantidad de productos\n")
                     else: 
                         contador_cantidad = contador_cantidad + 1 
-                precio_prd = int(input("¿Cual es el valor unitario del producto?: "))
+                while contador_unitario ==0: 
+                    precio_prd = int(input("¿Cual es el valor unitario del producto?: "))
+                    if precio_prd < 0:
+                        print("\n-----AVISO-----") 
+                        print("SOLO SE ACEPTAN NUMEROS ENTEROS Y POSITIVOS ")
+                        print("Por favor vuelve a ingresar el costo unitario del producto\n")
+                    else: 
+                        contador_unitario = contador_unitario + 1
                 fecha_venta = datetime.date.today()
                     
                 try:
