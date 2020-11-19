@@ -13,7 +13,7 @@ while loop == 1:
             with sqlite3.connect("Registro_de_Ventas.db") as conn:
                 c = conn.cursor()
                 c.execute("CREATE TABLE IF NOT EXISTS ventas (codigo INTEGER PRIMARY KEY, nombre TEXT NOT NULL, cantidad INTEGER, precio INTEGER, fecha DATE);")
-                print("Conexión establecida correctamente")
+                print("Conexión establecida correctamente\n")
         except Error as e:
             print(e)
         except:
@@ -55,7 +55,7 @@ while loop == 1:
                         c = conn.cursor()
                         valores = {"clave":clave_prd, "nombre":nombre_prd, "cantidad":cantidad_prd, "precio":precio_prd, "fecha":fecha_venta}
                         c.execute("INSERT INTO ventas VALUES(:clave, :nombre, :cantidad, :precio, :fecha)", valores)
-                        print("*** Registro agregado exitosamente ***")
+                        print("*** Registro agregado exitosamente ***\n")
                 except Error as e:
                     print(e)
                 except:
