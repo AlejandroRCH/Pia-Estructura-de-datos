@@ -25,12 +25,21 @@ while loop == 1:
             print("----------INSTRUCCIONES----------")
             print("Proporcione los datos de la venta, introduzca la clave 0(cero) para terminar: ")
             print("\nINGRESA UN NUMERO ENTERO PARA LA CLAVE\n")
-            clave_prd= int(input("Clave de la venta a agregar: "))
+            clave_prd= int(input("¿Cual es la clave que le quieres dar al producto?: "))
             if clave_prd == 0:
                 continuar = 2
             else:
                 nombre_prd = input("¿Cual es el nombre del producto?: ")
-                cantidad_prd = int(input("¿Cuantos productos vas a registrar?: "))
+                contador_cantidad = 0 
+                
+                while contador_cantidad == 0: 
+                    cantidad_prd = int(input("¿Cuantos productos vas a registrar?: "))
+                    if cantidad_prd < 0: 
+                        print("\n-----AVISO-----") 
+                        print("SOLO SE ACEPTAN NUMEROS ENTEROS Y POSITIVOS ") 
+                        print("Por favor vuelve a ingresar la cantidad de productos\n")
+                    else: 
+                        contador_cantidad = contador_cantidad + 1 
                 precio_prd = int(input("¿Cual es el valor unitario del producto?: "))
                 fecha_venta = datetime.date.today()
                     
