@@ -4,7 +4,7 @@ from sqlite3 import Error
 import datetime
 import pandas as pd 
 
-
+lista_total_venta = []  
 
 loop = 1
 
@@ -28,7 +28,7 @@ while loop == 1:
             if RES == 0:
                 continuar = 2
             else:
-                
+                del lista_total_venta[:]
                 print("----------REGISTRANDO VENTA----------")
                 rep_ventas = int(input("\n¿Cuantos articulos compro el cliente?: "))
                 for numero in range(rep_ventas): 
@@ -53,7 +53,8 @@ while loop == 1:
                         else:
                             contador_unitario = contador_unitario + 1
                     fecha_venta = datetime.date.today()
-                    
+                    lista_total_venta.append(cantidad_prd * precio_prd) 
+                    total_venta = sum(lista_total_venta) 
                     
                     try:
                         with sqlite3.connect("Registro_de_ventas.db") as conn:
