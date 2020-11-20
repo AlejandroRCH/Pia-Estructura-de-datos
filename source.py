@@ -31,6 +31,8 @@ while loop == 1:
                 
                 print("----------REGISTRANDO VENTA----------")
                 rep_ventas = int(input("\n¿Cuantos articulos compro el cliente?: "))
+                #meter aqui el FOR
+                clave_prd= int(input("¿Cual es la clave que le quieres dar al producto?: "))
                 nombre_prd = input("¿Cual es el nombre del producto?: ")
                 contador_cantidad = 0 
                 contador_unitario = 0 
@@ -43,10 +45,10 @@ while loop == 1:
                     else: 
                         contador_cantidad = contador_cantidad + 1 
                 while contador_unitario ==0: 
-                    precio_prd = int(input("¿Cual es el valor unitario del producto?: "))
+                    precio_prd = float(input("¿Cual es el valor unitario del producto?: ")) 
                     if precio_prd < 0:
                         print("\n-----AVISO-----") 
-                        print("SOLO SE ACEPTAN NUMEROS ENTEROS Y POSITIVOS ")
+                        print("SOLO SE ACEPTAN NUMEROS POSITIVOS ") 
                         print("Por favor vuelve a ingresar el costo unitario del producto\n")
                     else: 
                         contador_unitario = contador_unitario + 1
