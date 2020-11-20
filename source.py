@@ -21,7 +21,6 @@ while loop == 1:
             
         continuar = 1
         while continuar == 1:
-            print("=" * 40)
             print("----------INSTRUCCIONES----------")
             print("Proporcione los datos de la venta, introduzca la clave 0(cero) para terminar: ")
             print("\nINGRESA UN NUMERO ENTERO PARA LA CLAVE\n")
@@ -49,13 +48,14 @@ while loop == 1:
                     else: 
                         contador_unitario = contador_unitario + 1
                 fecha_venta = datetime.date.today()
-                    
+                total_compra = (precio_prd * cantidad_prd)
                 try:
                     with sqlite3.connect("Registro_de_ventas.db") as conn:
                         c = conn.cursor()
                         valores = {"clave":clave_prd, "nombre":nombre_prd, "cantidad":cantidad_prd, "precio":precio_prd, "fecha":fecha_venta}
                         c.execute("INSERT INTO ventas VALUES(:clave, :nombre, :cantidad, :precio, :fecha)", valores)
                         print("*** Registro agregado exitosamente ***\n")
+                        print(f"Se debe cobrar al cliente: ${total_compra}\n")
                 except Error as e:
                     print(e)
                 except:
