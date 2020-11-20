@@ -4,6 +4,8 @@ from sqlite3 import Error
 import datetime
 import pandas as pd 
 
+
+
 loop = 1
 
 while loop == 1:
@@ -22,13 +24,13 @@ while loop == 1:
             
         continuar = 1
         while continuar == 1:
-            print("----------INSTRUCCIONES----------")
-            print("Proporcione los datos de la venta, introduzca la clave 0(cero) para terminar: ")
-            print("\nINGRESA UN NUMERO ENTERO PARA LA CLAVE\n")
-            clave_prd= int(input("¿Cual es la clave que le quieres dar al producto?: "))
-            if clave_prd == 0:
+            RES = int(input("Ingresa el numero 0(cero) para regresar al menu\nIngresa cualquier numero para continuar: ")) 
+            if RES == 0:
                 continuar = 2
             else:
+                
+                print("----------REGISTRANDO VENTA----------")
+                rep_ventas = int(input("\n¿Cuantos articulos compro el cliente?: "))
                 nombre_prd = input("¿Cual es el nombre del producto?: ")
                 contador_cantidad = 0 
                 contador_unitario = 0 
