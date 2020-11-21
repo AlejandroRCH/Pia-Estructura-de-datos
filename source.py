@@ -2,7 +2,10 @@ import sys
 import sqlite3
 from sqlite3 import Error
 import datetime
-import pandas as pd 
+import pandas as pd
+
+lista_total_venta = []  
+
  
 loop = 1
 
@@ -21,15 +24,24 @@ while loop == 1:
             print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
             
         continuar = 1
+        del lista_total_venta[:]
         while continuar == 1:
             clave_prd = int(input("Ingresa la clave del producto o Ingresa el numero 0(cero) para regresar al menu: ")) 
             if clave_prd == 0:
                 continuar = 2
             else:
                 print("----------REGISTRANDO VENTA----------")
-                nombre_prd = input("¿Cual es el nombre del producto?: ")
                 contador_cantidad = 0
                 contador_unitario = 0
+                contador_nombre = 0
+                while contador_nombre == 0:
+                    nombre_prd = input("¿Cual es el nombre del producto?: ")
+                    if (nombre_prd.isspace() or len(nombre_prd) ==0):
+                        print("\n-----AVISO-----")
+                        print("Por favor vuelve a ingresa el nombre del producto no se acepta el nombre vacio\n")
+                    else:
+                        
+                        contador_nombre = contador_nombre + 1
                 while contador_cantidad == 0:
                     cantidad_prd = int(input("¿Cuantos productos vas a registrar?: "))
                     if cantidad_prd < 0:
@@ -55,12 +67,15 @@ while loop == 1:
                         valores = {"clave":clave_prd, "nombre":nombre_prd, "cantidad":cantidad_prd, "precio":precio_prd, "fecha":fecha_venta}
                         c.execute("INSERT INTO ventas VALUES(:clave, :nombre, :cantidad, :precio, :fecha)", valores)
                         print("*** Registro agregado exitosamente ***\n")
-                        print(f"Se debe cobrar al cliente: ${total_venta}\n")
+                        lista_total_venta.append(cantidad_prd * precio_prd) 
+                        
                 except Error as e:
                     print(e)
                 except:
                     print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
-            print("Se concluyó la carga de registros de fabricante")
+        total_venta = sum(lista_total_venta)
+        print(f"Se debe cobrar al cliente: ${total_venta}\n")
+        print("Se concluyó la carga de registros")
 
 
     
