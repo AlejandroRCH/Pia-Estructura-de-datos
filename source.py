@@ -74,7 +74,8 @@ while loop == 1:
                 except:
                     print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
         total_venta = sum(lista_total_venta)
-        print(f"Se debe cobrar al cliente: ${total_venta}\n")
+        print(f"\nSe debe cobrar al cliente: ${total_venta}")
+        print(f"Fecha del registro: {fecha_venta}\n")
         print("Se concluyó la carga de registros")
 
 
